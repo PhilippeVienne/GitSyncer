@@ -6,11 +6,16 @@ cffi==1.11.4
 cryptography==2.1.4
 dj-config-url==0.1.1
 Django==2.0.1
+django-celery-beat==1.1.0
+django-celery-results==1.0.1
 djangorestframework==3.7.7
+ephem==3.7.6.0
 gitdb2==2.0.3
 GitPython==2.1.8
+gunicorn==19.7.1
 idna==2.6
 kombu==4.1.0
+psycopg2==2.7.3.2
 pycparser==2.18
 pytz==2017.3
 six==1.11.0

@@ -66,9 +66,9 @@ class Repository(models.Model):
 
     def get_ssh_command(self):
         if self.ssh_key_id is None:
-            return 'ssh'
+            return 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '
         else:
-            return 'ssh -o IdentitiesOnly=yes -i %s' % self.ssh_key.get_file()
+            return 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i %s' % self.ssh_key.get_file()
 
     def __str__(self):
         return "{} ({})".format(self.name, self.remote_url)

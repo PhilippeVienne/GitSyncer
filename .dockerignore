@@ -1,0 +1,7 @@
+.idea
+.git
+*.sqlite3
+staticfiles
+uploads
+clones
+venv

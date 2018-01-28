@@ -6,6 +6,7 @@ from rest_framework.decorators import authentication_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from gitsyncer.api import tasks
 from gitsyncer.api.models import Mirror
 
 
@@ -18,5 +19,5 @@ class SyncView(APIView):
             mirror = Mirror.objects.get(token=token)
         except Mirror.DoesNotExist:
             raise Http404
-        mirror.sync()
+        tasks.sync_repo.delay(mirror.id)
         return Response({'success': True})

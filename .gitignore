@@ -1,0 +1,9 @@
+
+.idea/
+clones/
+db.sqlite3
+gitsyncer/__pycache__/
+gitsyncer/api/__pycache__/
+gitsyncer/api/migrations/__pycache__/
+templates/
+venv/

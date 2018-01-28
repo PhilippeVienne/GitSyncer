@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
+    'django_celery_beat',
     'rest_framework',
     'gitsyncer.api.apps.ApiConfig'
 ]
@@ -157,3 +159,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
+
+# Celery config
+CELERY_BROKER_URL = os.environ.get('BROKER_URL', 'amqp://guest@localhost/')
+CELERY_RESULT_BACKEND = 'django-db'

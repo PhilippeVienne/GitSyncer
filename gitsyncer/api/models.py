@@ -1,3 +1,4 @@
+import binascii
 import os
 import stat
 
@@ -73,7 +74,12 @@ class Repository(models.Model):
         return "{} ({})".format(self.name, self.remote_url)
 
 
+def random_token():
+    return binascii.hexlify(os.urandom(18)).decode('utf-8')
+
+
 class Mirror(models.Model):
+    token = models.CharField(max_length=250, verbose_name=_('clef'), unique=True, default=random_token)
     origin = models.ForeignKey(Repository, verbose_name=_('origine'), on_delete=models.CASCADE,
                                related_name='mirrors_as_origin')
     destination = models.ForeignKey(Repository, verbose_name=_('destination'), on_delete=models.CASCADE,

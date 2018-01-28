@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from gitsyncer.api import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('v1/', include('gitsyncer.api.urls')),
+    path('sync/<str:token>/', views.SyncView.as_view()),
 ]

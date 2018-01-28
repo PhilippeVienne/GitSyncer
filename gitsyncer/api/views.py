@@ -10,19 +10,10 @@ from gitsyncer.api.models import Mirror
 
 
 class SyncView(APIView):
-    """
-    View to list all users in the system.
-
-    * Requires token authentication.
-    * Only admin users are able to access this view.
-    """
     authentication_classes = []
     permission_classes = []
 
     def post(self, request, token, format=None):
-        """
-        Return a list of all users.
-        """
         try:
             mirror = Mirror.objects.get(token=token)
         except Mirror.DoesNotExist:

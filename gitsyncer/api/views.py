@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authentication import BasicAuthentication
@@ -22,6 +23,9 @@ class SyncView(APIView):
         """
         Return a list of all users.
         """
-        mirror = Mirror.objects.get(token=token)
+        try:
+            mirror = Mirror.objects.get(token=token)
+        except Mirror.DoesNotExist:
+            raise Http404
         mirror.sync()
-        return Response(str(mirror.id))
+        return Response({'success': True})
